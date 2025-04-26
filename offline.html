@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Offline - Travel Explorer</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fafeff;
+            color: #1b3a57;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            padding: 2rem;
+        }
+        h1 {
+            color: #08355c;
+            margin-bottom: 1rem;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3A86FF;
+            margin-bottom: 2rem;
+        }
+        .offline-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: #3A86FF;
+        }
+        .message {
+            margin-bottom: 2rem;
+        }
+        .button {
+            display: inline-block;
+            background-color: #3A86FF;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+        }
+        .button:hover {
+            background-color: #1a73e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Travel Explorer</div>
+        <div class="offline-icon">⚠️</div>
+        <h1>You're offline</h1>
+        <p class="message">
+            The page you're trying to access is not available offline. 
+            Please connect to the internet to access this content.
+        </p>
+        <a href="index.html" class="button">Try Again</a>
+    </div>
+    <script>
+        // Check for network status changes
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // Add button functionality
+        document.querySelector('.button').addEventListener('click', (e) => {
+            // If online, allow normal navigation
+            if (navigator.onLine) {
+                return;
+            }
+            
+            // If still offline, prevent default and show alert
+            e.preventDefault();
+            alert('You are still offline. Please connect to the internet and try again.');
+        });
+    </script>
+</body>
+</html>
